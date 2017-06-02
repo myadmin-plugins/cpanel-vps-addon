@@ -11,7 +11,8 @@ class Plugin {
 
 	public static function Load(GenericEvent $event) {
 		$service = $event->getSubject();
-		$addon = new Addon();
+		function_requirements('Addon');
+		$addon = new \Addon();
 		$addon->set_module('vps')->set_text('CPanel')->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(true)->set_enable(function() {
 				require_once 'include/licenses/license.functions.inc.php';
