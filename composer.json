@@ -21,7 +21,7 @@
         "ext-soap": "*",
 	"symfony/event-dispatcher": "*",
 	"detain/myadmin-plugin-installer": "dev-master",
-	"detain/cpanel-licensing": "*"
+	"detain/myadmin-cpanel-licensing": "*"
     },
     "autoload": {
         "psr-4": {"Detain\\MyAdminVpsCpanel\\": "src/"}
