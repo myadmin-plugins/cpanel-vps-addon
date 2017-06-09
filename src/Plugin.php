@@ -35,4 +35,10 @@ class Plugin {
 		$service_order->add_addon($addon);
 	}
 
+	public static function Settings(GenericEvent $event) {
+		$module = 'vps';
+		$settings = $event->getSubject();
+		$settings->add_text_setting($module, 'Addon Costs', 'vps_cpanel_cost', 'VPS CPanel License:', 'This is the cost for purchasing a cpanel license on top of a VPS.', $settings->get_setting('VPS_CPANEL_COST'));
+	}
+
 }

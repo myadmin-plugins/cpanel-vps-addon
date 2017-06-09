@@ -16,8 +16,8 @@ return [
 	'type' => 'addon',
 	'hooks' => [
 		'vps.load_addons' => ['Detain\MyAdminVpsCpanel\Plugin', 'Load'],
+		'vps.settings' => ['Detain\MyAdminVpsCpanel\Plugin', 'Settings'],
 		/* 'function.requirements' => ['Detain\MyAdminVpsCpanel\Plugin', 'Requirements'],
-		'licenses.settings' => ['Detain\MyAdminVpsCpanel\Plugin', 'Settings'],
 		'licenses.activate' => ['Detain\MyAdminVpsCpanel\Plugin', 'Activate'],
 		'licenses.change_ip' => ['Detain\MyAdminVpsCpanel\Plugin', 'ChangeIp'],
 		'ui.menu' => ['Detain\MyAdminVpsCpanel\Plugin', 'Menu'] */
