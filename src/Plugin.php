@@ -18,9 +18,9 @@ class Plugin {
 				$service_info = $service_order->get_service_info();
 				$settings = get_module_settings($service_order->get_module());
 				require_once 'include/licenses/license.functions.inc.php';
-				function_requirements('get_license_data');
+				function_requirements('get_cpanel_license_data_by_ip');
 				function_requirements('activate_cpanel');
-				$service_extra = get_license_data($service_info[$settings['PREFIX'].'_ip']);
+				$service_extra = get_cpanel_license_data_by_ip($service_info[$settings['PREFIX'].'_ip']);
 				// check if activated,if not then activate cpanel license
 				if (($service_extra['valid'] != 1) && ($service_info[$settings['PREFIX'].'_ip'] != '')) {
 					// 188 = openvz , 1814 = kvm
