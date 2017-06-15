@@ -53,7 +53,6 @@ class Plugin {
 			deactivate_cpanel($service_info[$settings['PREFIX'].'_ip']);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'del_cpanel', $service_info[$settings['PREFIX'].'_id'], $service_info[$settings['PREFIX'].'_ip'], $service_info[$settings['PREFIX'].'_custid']);
 		}
-
 	}
 
 	public static function Settings(GenericEvent $event) {
