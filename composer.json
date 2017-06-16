@@ -10,6 +10,10 @@
             "homepage": "https://my.interserver.net/"
         }
     ],
+	"config": {
+		"bin-dir": "vendor/bin",
+		"minimum-stability": "dev"
+	},
     "repositories": [
         {
             "type": "git",
@@ -23,6 +27,13 @@
 	"detain/myadmin-plugin-installer": "dev-master",
 	"detain/myadmin-cpanel-licensing": "*"
     },
+	"require-dev": {
+		"phpunit/phpunit": "*",
+		"vlucas/phpdotenv": "*",
+		"codeclimate/php-test-reporter": "dev-master",
+		"satooshi/php-coveralls": "*",
+		"codacy/coverage": "dev-master"
+	},
     "autoload": {
         "psr-4": {"Detain\\MyAdminVpsCpanel\\": "src/"}
     }
