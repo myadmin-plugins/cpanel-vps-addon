@@ -1,15 +1,28 @@
-# MyAdmin Cpanel Licensing Plugin
+# Cpanel Addon for VPS Module in MyAdmin
 
-This plugin adds support for selling Cpanel licenses to the MyAdmin system
+Cpanel Addon for VPS Module in MyAdmin
 
-[![Latest Stable Version](https://poser.pugx.org/detain/myadmin-cpanel-licensing/version)](https://packagist.org/packages/detain/myadmin-cpanel-licensing)
-[![Total Downloads](https://poser.pugx.org/detain/myadmin-cpanel-licensing/downloads)](https://packagist.org/packages/detain/myadmin-cpanel-licensing)
-[![Latest Unstable Version](https://poser.pugx.org/detain/myadmin-cpanel-licensing/v/unstable)](//packagist.org/packages/detain/myadmin-cpanel-licensing)
-[![License](https://poser.pugx.org/detain/myadmin-cpanel-licensing/license)](https://packagist.org/packages/detain/myadmin-cpanel-licensing)
-[![Monthly Downloads](https://poser.pugx.org/detain/myadmin-cpanel-licensing/d/monthly)](https://packagist.org/packages/detain/myadmin-cpanel-licensing)
-[![Daily Downloads](https://poser.pugx.org/detain/myadmin-cpanel-licensing/d/daily)](https://packagist.org/packages/detain/myadmin-cpanel-licensing)
-[![Reference Status](https://www.versioneye.com/php/detain:myadmin-cpanel-licensing/reference_badge.svg?style=flat)](https://www.versioneye.com/php/detain:myadmin-cpanel-licensing/references)
-[![Build Status](https://travis-ci.org/detain/myadmin-cpanel-licensing.svg?branch=master)](https://travis-ci.org/detain/myadmin-cpanel-licensing)
-[![Code Climate](https://codeclimate.com/github/detain/myadmin-cpanel-licensing/badges/gpa.svg)](https://codeclimate.com/github/detain/myadmin-cpanel-licensing)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-licensing/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-licensing/?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dcfdb555bf234afabceb40728959280b)](https://www.codacy.com/app/detain/myadmin-cpanel-licensing)
+## Build Status and Code Analysis
+
+Site          | Status
+--------------|---------------------------
+Travis-CI     | [![Build Status](https://travis-ci.org/detain/myadmin-cpanel-vps-addon.svg?branch=master)](https://travis-ci.org/detain/myadmin-cpanel-vps-addon)
+Code Climate  | [![Code Climate](https://codeclimate.com/github/detain/myadmin-cpanel-vps-addon/badges/gpa.svg)](https://codeclimate.com/github/detain/myadmin-cpanel-vps-addon) [![Test Coverage](https://codeclimate.com/github/detain/myadmin-cpanel-vps-addon/badges/coverage.svg)](https://codeclimate.com/github/detain/myadmin-cpanel-vps-addon/coverage) [![Issue Count](https://codeclimate.com/github/detain/myadmin-cpanel-vps-addon/badges/issue_count.svg)](https://codeclimate.com/github/detain/myadmin-cpanel-vps-addon)
+Scrutinizer   | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-vps-addon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-vps-addon/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-vps-addon/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-vps-addon/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-vps-addon/badges/build.png?b=master)](https://scrutinizer-ci.com/g/detain/myadmin-cpanel-vps-addon/build-status/master)
+Codacy        | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/226251fc068f4fd5b4b4ef9a40011d06)](https://www.codacy.com/app/detain/myadmin-cpanel-vps-addon) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/25fa74eb74c947bf969602fcfe87e349)](https://www.codacy.com/app/detain/myadmin-cpanel-vps-addon?utm_source=github.com&utm_medium=referral&utm_content=detain/myadmin-cpanel-vps-addon&utm_campaign=Badge_Coverage)
+VersionEye    | [![Reference Status](https://www.versioneye.com/php/detain:myadmin-cpanel-vps-addon/reference_badge.svg?style=flat)](https://www.versioneye.com/php/detain:myadmin-cpanel-vps-addon/references) [![Dependency Status](https://www.versioneye.com/user/projects/592f7318bafc5500414dfd2a/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/592f7318bafc5500414dfd2a)
+Packagist     | [![Latest Stable Version](https://poser.pugx.org/detain/myadmin-cpanel-vps-addon/version)](https://packagist.org/packages/detain/myadmin-cpanel-vps-addon) [![Total Downloads](https://poser.pugx.org/detain/myadmin-cpanel-vps-addon/downloads)](https://packagist.org/packages/detain/myadmin-cpanel-vps-addon) [![Latest Unstable Version](https://poser.pugx.org/detain/myadmin-cpanel-vps-addon/v/unstable)](//packagist.org/packages/detain/myadmin-cpanel-vps-addon) [![Monthly Downloads](https://poser.pugx.org/detain/myadmin-cpanel-vps-addon/d/monthly)](https://packagist.org/packages/detain/myadmin-cpanel-vps-addon) [![Daily Downloads](https://poser.pugx.org/detain/myadmin-cpanel-vps-addon/d/daily)](https://packagist.org/packages/detain/myadmin-cpanel-vps-addon) [![License](https://poser.pugx.org/detain/myadmin-cpanel-vps-addon/license)](https://packagist.org/packages/detain/myadmin-cpanel-vps-addon)
+
+
+## Installation
+
+Install with composer like
+
+```sh
+composer require detain/myadmin-cpanel-vps-addon
+```
+
+## License
+
+The Cpanel Addon for VPS Module in MyAdmin class is licensed under the LGPL-v2 license.
+
