@@ -6,7 +6,21 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 
 class Plugin {
 
+	public static $name = 'Cpanel Licensing VPS Addon';
+	public static $description = 'Allows selling of Cpanel Server and VPS License Types.  More info at https://www.netenberg.com/cpanel.php';
+	public static $help = 'It provides more than one million end users the ability to quickly install dozens of the leading open source content management systems into their web space.  	Must have a pre-existing cPanel license with cPanelDirect to purchase a cpanel license. Allow 10 minutes for activation.';
+	public static $module = 'vps';
+	public static $type = 'addon';
+
+
 	public function __construct() {
+	}
+
+	public static function Hooks() {
+		return [
+			'vps.load_addons' => ['Detain\MyAdminVpsCpanel\Plugin', 'Load'],
+			'vps.settings' => ['Detain\MyAdminVpsCpanel\Plugin', 'Settings'],
+		];
 	}
 
 	public static function Load(GenericEvent $event) {
