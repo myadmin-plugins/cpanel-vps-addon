@@ -30,7 +30,7 @@ class Plugin {
 		$addon->set_module('vps')
 			->set_text('CPanel')
 			->set_cost(VPS_CPANEL_COST)
-			->set_require_ip(true)
+			->set_require_ip(TRUE)
 			->set_enable(['Detain\MyAdminVpsCpanel\Plugins', 'Enable'])
 			->set_disable(['Detain\MyAdminVpsCpanel\Plugins', 'Disable'])
 			->register();
@@ -47,7 +47,7 @@ class Plugin {
 		if (($service_extra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
 			function_requirements('activate_cpanel');
 			// 188 = openvz , 1814 = kvm
-			if (in_array($serviceInfo[$settings['PREFIX'].'_type'], array(SERVICE_TYPES_KVM_LINUX, SERVICE_TYPES_CLOUD_KVM_LINUX), true))
+			if (in_array($serviceInfo[$settings['PREFIX'].'_type'], array(SERVICE_TYPES_KVM_LINUX, SERVICE_TYPES_CLOUD_KVM_LINUX), TRUE))
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
 			else
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 188);
