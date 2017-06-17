@@ -32,7 +32,7 @@ class Plugin {
 			->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(TRUE)
 			->set_enable([__CLASS__, 'Enable'])
-			->set_disable([__CLASS__', 'Disable'])
+			->set_disable([__CLASS__, 'Disable'])
 			->register();
 		$service_order->add_addon($addon);
 	}
