@@ -31,8 +31,8 @@ class Plugin {
 			->set_text('CPanel')
 			->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(TRUE)
-			->set_enable(['Detain\MyAdminVpsCpanel\Plugins', 'Enable'])
-			->set_disable(['Detain\MyAdminVpsCpanel\Plugins', 'Disable'])
+			->set_enable([__CLASS__, 'Enable'])
+			->set_disable([__CLASS__', 'Disable'])
 			->register();
 		$service_order->add_addon($addon);
 	}
