@@ -16,7 +16,7 @@ class Plugin {
 	public function __construct() {
 	}
 
-	public static function Hooks() {
+	public static function getHooks() {
 		return [
 			'vps.load_addons' => [__CLASS__, 'Load'],
 			'vps.settings' => [__CLASS__, 'Settings'],
