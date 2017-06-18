@@ -19,7 +19,7 @@ class Plugin {
 	public static function getHooks() {
 		return [
 			'vps.load_addons' => [__CLASS__, 'Load'],
-			'vps.settings' => [__CLASS__, 'Settings'],
+			'vps.settings' => [__CLASS__, 'getSettings'],
 		];
 	}
 
@@ -69,7 +69,7 @@ class Plugin {
 		}
 	}
 
-	public static function Settings(GenericEvent $event) {
+	public static function getSettings(GenericEvent $event) {
 		$module = 'vps';
 		$settings = $event->getSubject();
 		$settings->add_text_setting($module, 'Addon Costs', 'vps_cpanel_cost', 'VPS CPanel License:', 'This is the cost for purchasing a cpanel license on top of a VPS.', $settings->get_setting('VPS_CPANEL_COST'));
