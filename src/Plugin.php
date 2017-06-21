@@ -24,7 +24,7 @@ class Plugin {
 	}
 
 	public static function Load(GenericEvent $event) {
-		$service_order = $event->getSubject();
+		$serviceOrder = $event->getSubject();
 		function_requirements('class.Addon');
 		$addon = new \Addon();
 		$addon->set_module('vps')
@@ -34,12 +34,12 @@ class Plugin {
 			->set_enable([__CLASS__, 'Enable'])
 			->set_disable([__CLASS__, 'Disable'])
 			->register();
-		$service_order->add_addon($addon);
+		$serviceOrder->add_addon($addon);
 	}
 
-	public static function Enable(\Service_Order $service_order) {
-		$serviceInfo = $service_order->getServiceInfo();
-		$settings = get_module_settings($service_order->get_module());
+	public static function Enable(\Service_Order $serviceOrder) {
+		$serviceInfo = $serviceOrder->getServiceInfo();
+		$settings = get_module_settings($serviceOrder->get_module());
 		require_once 'include / licenses / license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
 		$service_extra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
@@ -55,9 +55,9 @@ class Plugin {
 		}
 	}
 
-	public static function Disable(\Service_Order $service_order) {
-		$serviceInfo = $service_order->getServiceInfo();
-		$settings = get_module_settings($service_order->get_module());
+	public static function Disable(\Service_Order $serviceOrder) {
+		$serviceInfo = $serviceOrder->getServiceInfo();
+		$settings = get_module_settings($serviceOrder->get_module());
 		require_once 'include / licenses / license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
 		$service_extra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
