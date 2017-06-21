@@ -42,9 +42,9 @@ class Plugin {
 		$settings = get_module_settings($serviceOrder->get_module());
 		require_once 'include / licenses / license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
-		$service_extra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
+		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if not then activate cpanel license
-		if (($service_extra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
+		if (($serviceExtra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
 			function_requirements('activate_cpanel');
 			// 188 = openvz , 1814 = kvm
 			if (in_array($serviceInfo[$settings['PREFIX'].'_type'], array(SERVICE_TYPES_KVM_LINUX, SERVICE_TYPES_CLOUD_KVM_LINUX), TRUE))
@@ -60,9 +60,9 @@ class Plugin {
 		$settings = get_module_settings($serviceOrder->get_module());
 		require_once 'include / licenses / license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
-		$service_extra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
+		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if so then deactivate cpanel license
-		if (($service_extra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
+		if (($serviceExtra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
 			function_requirements('deactivate_cpanel');
 			deactivate_cpanel($serviceInfo[$settings['PREFIX'].'_ip']);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'del_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
