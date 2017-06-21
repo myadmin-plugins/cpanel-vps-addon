@@ -40,7 +40,7 @@ class Plugin {
 	public static function doEnable(\Service_Order $serviceOrder) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings($serviceOrder->get_module());
-		require_once 'include / licenses / license.functions.inc.php';
+		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if not then activate cpanel license
@@ -58,7 +58,7 @@ class Plugin {
 	public static function doDisable(\Service_Order $serviceOrder) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings($serviceOrder->get_module());
-		require_once 'include / licenses / license.functions.inc.php';
+		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if so then deactivate cpanel license
