@@ -31,13 +31,13 @@ class Plugin {
 			->set_text('CPanel')
 			->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(TRUE)
-			->set_enable([__CLASS__, 'Enable'])
-			->set_disable([__CLASS__, 'Disable'])
+			->set_enable([__CLASS__, 'doEnable'])
+			->set_disable([__CLASS__, 'doDisable'])
 			->register();
 		$serviceOrder->add_addon($addon);
 	}
 
-	public static function Enable(\Service_Order $serviceOrder) {
+	public static function doEnable(\Service_Order $serviceOrder) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings($serviceOrder->get_module());
 		require_once 'include / licenses / license.functions.inc.php';
@@ -55,7 +55,7 @@ class Plugin {
 		}
 	}
 
-	public static function Disable(\Service_Order $serviceOrder) {
+	public static function doDisable(\Service_Order $serviceOrder) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings($serviceOrder->get_module());
 		require_once 'include / licenses / license.functions.inc.php';
