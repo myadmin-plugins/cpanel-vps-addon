@@ -18,12 +18,12 @@ class Plugin {
 
 	public static function getHooks() {
 		return [
-			'vps.load_addons' => [__CLASS__, 'Load'],
+			'vps.load_addons' => [__CLASS__, 'getAddon'],
 			'vps.settings' => [__CLASS__, 'getSettings'],
 		];
 	}
 
-	public static function Load(GenericEvent $event) {
+	public static function getAddon(GenericEvent $event) {
 		$serviceOrder = $event->getSubject();
 		function_requirements('class.Addon');
 		$addon = new \Addon();
