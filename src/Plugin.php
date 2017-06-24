@@ -39,7 +39,7 @@ class Plugin {
 
 	public static function doEnable(\Service_Order $serviceOrder) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
-		$settings = get_module_settings($serviceOrder->get_module());
+		$settings = get_module_settings($serviceOrder->getModule());
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
@@ -57,7 +57,7 @@ class Plugin {
 
 	public static function doDisable(\Service_Order $serviceOrder) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
-		$settings = get_module_settings($serviceOrder->get_module());
+		$settings = get_module_settings($serviceOrder->getModule());
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
