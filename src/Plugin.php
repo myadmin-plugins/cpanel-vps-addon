@@ -6,12 +6,11 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 
 class Plugin {
 
-	public static $name = 'Cpanel Licensing VPS Addon';
-	public static $description = 'Allows selling of Cpanel Server and VPS License Types.  More info at https://www.netenberg.com/cpanel.php';
-	public static $help = 'It provides more than one million end users the ability to quickly install dozens of the leading open source content management systems into their web space.  	Must have a pre-existing cPanel license with cPanelDirect to purchase a cpanel license. Allow 10 minutes for activation.';
+	public static $name = 'CPanel VPS Addon';
+	public static $description = 'Allows selling of CPanel Licenses as VPS Addon.  cPanel is an online (Linux-based) web hosting control panel that provides a graphical interface and automation tools designed to simplify the process of hosting a web site. cPanel utilizes a 3 tier structure that provides capabilities for administrators, resellers, and end-user website owners to control the various aspects of website and server administration through a standard web browser.  More info at https://cpanel.com/';
+	public static $help = '';
 	public static $module = 'vps';
 	public static $type = 'addon';
-
 
 	public function __construct() {
 	}
@@ -41,6 +40,7 @@ class Plugin {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
+		myadmin_log(self::$module, 'info', self::$name.' Activation', __LINE__, __FILE__);
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if not then activate cpanel license
@@ -59,6 +59,7 @@ class Plugin {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
+		myadmin_log(self::$module, 'info', self::$name.' Deactivation', __LINE__, __FILE__);
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if so then deactivate cpanel license
