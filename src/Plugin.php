@@ -55,7 +55,7 @@ class Plugin {
 		}
 	}
 
-	public static function doDisable(\Service_Order $serviceOrder) {
+	public static function doDisable(\Service_Order $serviceOrder, $repeatInvoiceId, $regexMatch = FALSE) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
@@ -67,6 +67,14 @@ class Plugin {
 			function_requirements('deactivate_cpanel');
 			deactivate_cpanel($serviceInfo[$settings['PREFIX'].'_ip']);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'del_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
+			add_output('Cpanel Canceled');
+			$email = $settings['TBLNAME'].' ID: '.$serviceInfo[$settings['PREFIX'].'_id'].'<br>'.$settings['TBLNAME'].' Hostname: '.$serviceInfo[$settings['PREFIX'].'_hostname'].'<br>Invoice: '.$repeatInvoiceId.'<br>Description: '.$repeat_invoice->getDescription().'<br>';
+			$subject = $settings['TBLNAME'].' '.$repeat_invoice->getService().' Canceled CPanel';
+			$headers = '';
+			$headers .= 'MIME-Version: 1.0'.EMAIL_NEWLINE;
+			$headers .= 'Content-type: text/html; charset=UTF-8'.EMAIL_NEWLINE;
+			$headers .= 'From: '.$settings['TITLE'].' <'.$settings['EMAIL_FROM'].'>'.EMAIL_NEWLINE;
+			admin_mail($subject, $email, $headers, false, 'admin_email_vps_cpanel_canceled.tpl');
 		}
 	}
 
