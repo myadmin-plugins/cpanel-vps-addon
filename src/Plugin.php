@@ -67,9 +67,9 @@ class Plugin {
 			function_requirements('deactivate_cpanel');
 			deactivate_cpanel($serviceInfo[$settings['PREFIX'].'_ip']);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'del_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
-			add_output('Cpanel Canceled');
-			$email = $settings['TBLNAME'].' ID: '.$serviceInfo[$settings['PREFIX'].'_id'].'<br>'.$settings['TBLNAME'].' Hostname: '.$serviceInfo[$settings['PREFIX'].'_hostname'].'<br>Invoice: '.$repeatInvoiceId.'<br>Description: '.$repeat_invoice->getDescription().'<br>';
-			$subject = $settings['TBLNAME'].' '.$repeat_invoice->getService().' Canceled CPanel';
+			add_output(self::$name.' Canceled');
+			$email = $settings['TBLNAME'].' ID: '.$serviceInfo[$settings['PREFIX'].'_id'].'<br>'.$settings['TBLNAME'].' Hostname: '.$serviceInfo[$settings['PREFIX'].'_hostname'].'<br>Repeat Invoice: '.$repeatInvoiceId.'<br>Description: '.self::$name.'<br>';
+			$subject = $settings['TBLNAME'].' '.$serviceInfo[$settings['PREFIX'].'_id'].' Canceled '.self::$name;
 			$headers = '';
 			$headers .= 'MIME-Version: 1.0'.EMAIL_NEWLINE;
 			$headers .= 'Content-type: text/html; charset=UTF-8'.EMAIL_NEWLINE;
