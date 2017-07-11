@@ -10,24 +10,24 @@
             "homepage": "https://my.interserver.net/"
         }
     ],
-	"config": {
-		"bin-dir": "vendor/bin",
-		"minimum-stability": "dev"
-	},
+    "config": {
+        "bin-dir": "vendor/bin",
+        "minimum-stability": "dev"
+    },
     "require": {
         "php": ">=5.0.0",
         "ext-soap": "*",
-	"symfony/event-dispatcher": "*",
-	"detain/myadmin-plugin-installer": "dev-master",
-	"detain/myadmin-cpanel-licensing": "*"
+    "symfony/event-dispatcher": "*",
+    "detain/myadmin-plugin-installer": "dev-master",
+    "detain/myadmin-cpanel-licensing": "*"
     },
-	"require-dev": {
-		"phpunit/phpunit": "*",
-		"vlucas/phpdotenv": "*",
-		"codeclimate/php-test-reporter": "dev-master",
-		"satooshi/php-coveralls": "*",
-		"codacy/coverage": "dev-master"
-	},
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "vlucas/phpdotenv": "*",
+        "codeclimate/php-test-reporter": "dev-master",
+        "satooshi/php-coveralls": "*",
+        "codacy/coverage": "dev-master"
+    },
     "autoload": {
         "psr-4": {"Detain\\MyAdminVpsCpanel\\": "src/"}
     }
