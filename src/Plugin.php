@@ -31,6 +31,7 @@ class Plugin {
 			->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(TRUE)
 			->set_enable([__CLASS__, 'doEnable'])
+			->set_verify([__CLASS__, 'doEnable'])
 			->set_disable([__CLASS__, 'doDisable'])
 			->register();
 		$serviceOrder->addAddon($addon);
@@ -47,10 +48,10 @@ class Plugin {
 		if (($serviceExtra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
 			function_requirements('activate_cpanel');
 			// 188 = openvz , 1814 = kvm
-			if (in_array($serviceInfo[$settings['PREFIX'].'_type'], array(SERVICE_TYPES_KVM_LINUX, SERVICE_TYPES_CLOUD_KVM_LINUX), TRUE))
-				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
-			else
+			if (in_array($service->category, [SERVICE_TYPES_OPENVZ, SERVICE_TYPES_SSD_OPENVZ, SERVICE_TYPES_VIRTUOZZO, SERVICE_TYPES_OPENVZ]))
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 188);
+			else
+				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'add_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
 		}
 	}
