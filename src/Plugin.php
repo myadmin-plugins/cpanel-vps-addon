@@ -39,6 +39,7 @@ class Plugin {
 
 	public static function doEnable(\Service_Order $serviceOrder, $repeatInvoiceId, $regexMatch = FALSE) {
 		$serviceInfo = $serviceOrder->getServiceInfo();
+		$serviceTypes = run_event('get_service_types', FALSE, self::$module);
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
 		myadmin_log(self::$module, 'info', self::$name.' Activation', __LINE__, __FILE__);
@@ -48,7 +49,7 @@ class Plugin {
 		if (($serviceExtra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
 			function_requirements('activate_cpanel');
 			// 188 = openvz , 1814 = kvm
-			if (in_array($service->getCategory(), [SERVICE_TYPES_OPENVZ, SERVICE_TYPES_SSD_OPENVZ, SERVICE_TYPES_VIRTUOZZO, SERVICE_TYPES_OPENVZ]))
+			if (in_array($serviceTypes[$serviceInfo[$settings['PREFIX'].'_type']]['services_category'], [SERVICE_TYPES_OPENVZ, SERVICE_TYPES_SSD_OPENVZ, SERVICE_TYPES_VIRTUOZZO, SERVICE_TYPES_OPENVZ]))
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 188);
 			else
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
