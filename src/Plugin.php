@@ -49,7 +49,7 @@ class Plugin {
 		if (($serviceExtra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
 			function_requirements('activate_cpanel');
 			// 188 = openvz , 1814 = kvm
-			if (in_array($serviceTypes[$serviceInfo[$settings['PREFIX'].'_type']]['services_category'], [SERVICE_TYPES_OPENVZ, get_service_define('SSD_OPENVZ'), get_service_define('VIRTUOZZO'), get_service_define('OPENVZ')]))
+			if (in_array($serviceTypes[$serviceInfo[$settings['PREFIX'].'_type']]['services_category'], [get_service_define('OPENVZ'), get_service_define('SSD_OPENVZ'), get_service_define('VIRTUOZZO'), get_service_define('OPENVZ')]))
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 188);
 			else
 				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
