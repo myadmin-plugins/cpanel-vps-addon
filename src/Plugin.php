@@ -29,7 +29,7 @@ class Plugin {
 	public static function getHooks() {
 		return [
 			self::$module.'.load_addons' => [__CLASS__, 'getAddon'],
-			self::$module.'.settings' => [__CLASS__, 'getSettings'],
+			self::$module.'.settings' => [__CLASS__, 'getSettings']
 		];
 	}
 
