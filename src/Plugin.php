@@ -44,9 +44,9 @@ class Plugin {
 			->set_text('CPanel')
 			->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(TRUE)
-			->set_enable([__CLASS__, 'doEnable'])
-			//->set_verify([__CLASS__, 'doEnable'])
-			->set_disable([__CLASS__, 'doDisable'])
+			->setEnable([__CLASS__, 'doEnable'])
+			//->setVerify([__CLASS__, 'doEnable'])
+			->setDisable([__CLASS__, 'doDisable'])
 			->register();
 		$serviceOrder->addAddon($addon);
 	}
