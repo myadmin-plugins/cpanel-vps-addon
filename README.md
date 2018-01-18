@@ -24,5 +24,5 @@ composer require detain/myadmin-cpanel-vps-addon
 
 ## License
 
-The Cpanel Addon for VPS Module in MyAdmin class is licensed under the LGPL-v2 license.
+The Cpanel Addon for VPS Module in MyAdmin class is licensed under the LGPL-v2.1 license.
 
