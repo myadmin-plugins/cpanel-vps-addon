@@ -106,9 +106,9 @@ class Plugin {
 			$email = $settings['TBLNAME'].' ID: '.$serviceInfo[$settings['PREFIX'].'_id'].'<br>'.$settings['TBLNAME'].' Hostname: '.$serviceInfo[$settings['PREFIX'].'_hostname'].'<br>Repeat Invoice: '.$repeatInvoiceId.'<br>Description: '.self::$name.'<br>';
 			$subject = $settings['TBLNAME'].' '.$serviceInfo[$settings['PREFIX'].'_id'].' Canceled '.self::$name;
 			$headers = '';
-			$headers .= 'MIME-Version: 1.0'.EMAIL_NEWLINE;
-			$headers .= 'Content-type: text/html; charset=UTF-8'.EMAIL_NEWLINE;
-			$headers .= 'From: '.$settings['TITLE'].' <'.$settings['EMAIL_FROM'].'>'.EMAIL_NEWLINE;
+			$headers .= 'MIME-Version: 1.0'.PHP_EOL;
+			$headers .= 'Content-type: text/html; charset=UTF-8'.PHP_EOL;
+			$headers .= 'From: '.$settings['TITLE'].' <'.$settings['EMAIL_FROM'].'>'.PHP_EOL;
 			admin_mail($subject, $email, $headers, FALSE, 'admin/vps_cpanel_canceled.tpl');
 		}
 	}
