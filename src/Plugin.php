@@ -9,8 +9,8 @@ use Symfony\Component\EventDispatcher\GenericEvent;
  *
  * @package Detain\MyAdminVpsCpanel
  */
-class Plugin {
-
+class Plugin
+{
 	public static $name = 'CPanel VPS Addon';
 	public static $description = 'Allows selling of CPanel Licenses as VPS Addon.  cPanel is an online (Linux-based) web hosting control panel that provides a graphical interface and automation tools designed to simplify the process of hosting a web site. cPanel utilizes a 3 tier structure that provides capabilities for administrators, resellers, and end-user website owners to control the various aspects of website and server administration through a standard web browser.  More info at https://cpanel.com/';
 	public static $help = '';
@@ -20,13 +20,15 @@ class Plugin {
 	/**
 	 * Plugin constructor.
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 	}
 
 	/**
 	 * @return array
 	 */
-	public static function getHooks() {
+	public static function getHooks()
+	{
 		return [
 			'function.requirements' => [__CLASS__, 'getRequirements'],
 			self::$module.'.load_addons' => [__CLASS__, 'getAddon'],
@@ -37,7 +39,8 @@ class Plugin {
 	/**
 	 * @param \Symfony\Component\EventDispatcher\GenericEvent $event
 	 */
-	public static function getRequirements(GenericEvent $event) {
+	public static function getRequirements(GenericEvent $event)
+	{
 		$loader = $event->getSubject();
 		$loader->add_page_requirement('vps_add_cpanel', '/../vendor/detain/myadmin-cpanel-vps-addon/src/vps_add_cpanel.php');
 	}
@@ -45,14 +48,15 @@ class Plugin {
 	/**
 	 * @param \Symfony\Component\EventDispatcher\GenericEvent $event
 	 */
-	public static function getAddon(GenericEvent $event) {
+	public static function getAddon(GenericEvent $event)
+	{
 		$serviceOrder = $event->getSubject();
 		function_requirements('class.AddonHandler');
 		$addon = new \AddonHandler();
 		$addon->setModule(self::$module)
 			->set_text('CPanel')
 			->set_cost(VPS_CPANEL_COST)
-			->set_require_ip(TRUE)
+			->set_require_ip(true)
 			->setEnable([__CLASS__, 'doEnable'])
 			//->setVerify([__CLASS__, 'doEnable'])
 			->setDisable([__CLASS__, 'doDisable'])
@@ -65,9 +69,10 @@ class Plugin {
 	 * @param                $repeatInvoiceId
 	 * @param bool           $regexMatch
 	 */
-	public static function doEnable(\ServiceHandler $serviceOrder, $repeatInvoiceId, $regexMatch = FALSE) {
+	public static function doEnable(\ServiceHandler $serviceOrder, $repeatInvoiceId, $regexMatch = false)
+	{
 		$serviceInfo = $serviceOrder->getServiceInfo();
-		$serviceTypes = run_event('get_service_types', FALSE, self::$module);
+		$serviceTypes = run_event('get_service_types', false, self::$module);
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
 		myadmin_log(self::$module, 'info', self::$name.' Activation', __LINE__, __FILE__);
@@ -80,7 +85,7 @@ class Plugin {
 			//if (in_array($serviceTypes[$serviceInfo[$settings['PREFIX'].'_type']]['services_category'], [get_service_define('OPENVZ'), get_service_define('SSD_OPENVZ'), get_service_define('VIRTUOZZO'), get_service_define('OPENVZ')]))
 			//	activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 188);
 			//else
-				activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
+			activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 1814);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'add_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
 		}
 	}
@@ -90,7 +95,8 @@ class Plugin {
 	 * @param                $repeatInvoiceId
 	 * @param bool           $regexMatch
 	 */
-	public static function doDisable(\ServiceHandler $serviceOrder, $repeatInvoiceId, $regexMatch = FALSE) {
+	public static function doDisable(\ServiceHandler $serviceOrder, $repeatInvoiceId, $regexMatch = false)
+	{
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
@@ -109,16 +115,16 @@ class Plugin {
 			$headers .= 'MIME-Version: 1.0'.PHP_EOL;
 			$headers .= 'Content-type: text/html; charset=UTF-8'.PHP_EOL;
 			$headers .= 'From: '.$settings['TITLE'].' <'.$settings['EMAIL_FROM'].'>'.PHP_EOL;
-			admin_mail($subject, $email, $headers, FALSE, 'admin/vps_cpanel_canceled.tpl');
+			admin_mail($subject, $email, $headers, false, 'admin/vps_cpanel_canceled.tpl');
 		}
 	}
 
 	/**
 	 * @param \Symfony\Component\EventDispatcher\GenericEvent $event
 	 */
-	public static function getSettings(GenericEvent $event) {
+	public static function getSettings(GenericEvent $event)
+	{
 		$settings = $event->getSubject();
 		$settings->add_text_setting(self::$module, 'Addon Costs', 'vps_cpanel_cost', 'VPS CPanel License:', 'This is the cost for purchasing a cpanel license on top of a VPS.', $settings->get_setting('VPS_CPANEL_COST'));
 	}
-
 }
