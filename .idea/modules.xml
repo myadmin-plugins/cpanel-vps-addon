@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/myadmin-cpanel-vps-addon.iml" filepath="$PROJECT_DIR$/.idea/myadmin-cpanel-vps-addon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cpanel-vps-addon.iml" filepath="$PROJECT_DIR$/.idea/cpanel-vps-addon.iml" />
     </modules>
   </component>
 </project>

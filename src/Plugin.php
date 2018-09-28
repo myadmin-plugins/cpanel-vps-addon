@@ -42,7 +42,7 @@ class Plugin
 	public static function getRequirements(GenericEvent $event)
 	{
 		$loader = $event->getSubject();
-		$loader->add_page_requirement('vps_add_cpanel', '/../vendor/detain/myadmin-cpanel-vps-addon/src/vps_add_cpanel.php');
+		$loader->add_page_requirement('vps_add_cpanel', '/../vendor/detain/cpanel-vps-addon/src/vps_add_cpanel.php');
 	}
 
 	/**
