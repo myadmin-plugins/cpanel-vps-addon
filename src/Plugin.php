@@ -78,7 +78,7 @@ class Plugin
 		$serviceTypes = run_event('get_service_types', false, self::$module);
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
-		myadmin_log(self::$module, 'info', self::$name.' Activation', __LINE__, __FILE__);
+		myadmin_log(self::$module, 'info', self::$name.' Activation', __LINE__, __FILE__, self::$module, $serviceInfo[$settings['PREFIX'].'_id']);
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if not then activate cpanel license
@@ -103,7 +103,7 @@ class Plugin
 		$serviceInfo = $serviceOrder->getServiceInfo();
 		$settings = get_module_settings(self::$module);
 		require_once __DIR__.'/../../../../include/licenses/license.functions.inc.php';
-		myadmin_log(self::$module, 'info', self::$name.' Deactivation', __LINE__, __FILE__, self::$module);
+		myadmin_log(self::$module, 'info', self::$name.' Deactivation', __LINE__, __FILE__, self::$module, $serviceInfo[$settings['PREFIX'].'_id']);
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if so then deactivate cpanel license
