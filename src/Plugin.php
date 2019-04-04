@@ -41,10 +41,10 @@ class Plugin
 	 */
 	public static function getRequirements(GenericEvent $event)
 	{
-        /**
-         * @var \MyAdmin\Plugins\Loader $this->loader
-         */
-        $loader = $event->getSubject();
+		/**
+		 * @var \MyAdmin\Plugins\Loader $this->loader
+		 */
+		$loader = $event->getSubject();
 		$loader->add_page_requirement('vps_add_cpanel', '/../vendor/detain/myadmin-cpanel-vps-addon/src/vps_add_cpanel.php');
 	}
 
@@ -125,12 +125,12 @@ class Plugin
 	/**
 	 * @param \Symfony\Component\EventDispatcher\GenericEvent $event
 	 */
-    public static function getSettings(GenericEvent $event)
-    {
-        /**
-         * @var \MyAdmin\Settings $settings
-         **/
-        $settings = $event->getSubject();
+	public static function getSettings(GenericEvent $event)
+	{
+		/**
+		 * @var \MyAdmin\Settings $settings
+		 **/
+		$settings = $event->getSubject();
 		$settings->add_text_setting(self::$module, _('Addon Costs'), 'vps_cpanel_cost', _('VPS CPanel License'), _('This is the cost for purchasing a cpanel license on top of a VPS.'), $settings->get_setting('VPS_CPANEL_COST'));
 	}
 }
