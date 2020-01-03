@@ -58,6 +58,7 @@ class Plugin
 		$addon = new \AddonHandler();
 		$addon->setModule(self::$module)
 			->set_text('CPanel')
+			->set_text_match('CPanel (.*) Accounts')
 			->set_cost(VPS_CPANEL_COST)
 			->set_require_ip(true)
 			->setEnable([__CLASS__, 'doEnable'])
