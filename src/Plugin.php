@@ -83,7 +83,7 @@ class Plugin
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if not then activate cpanel license
-		if (($serviceExtra['valid'] != 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
+		if (($serviceExtra === false || $serviceExtra['valid'] != 1) && $serviceInfo[$settings['PREFIX'].'_ip'] != '') {
 			function_requirements('activate_cpanel');
 			activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 31369);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'add_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
@@ -104,7 +104,7 @@ class Plugin
 		function_requirements('get_cpanel_license_data_by_ip');
 		$serviceExtra = get_cpanel_license_data_by_ip($serviceInfo[$settings['PREFIX'].'_ip']);
 		// check if activated,if so then deactivate cpanel license
-		if (($serviceExtra['valid'] == 1) && ($serviceInfo[$settings['PREFIX'].'_ip'] != '')) {
+		if ($serviceExtra !== false && $serviceExtra['valid'] == 1 && $serviceInfo[$settings['PREFIX'].'_ip'] != '') {
 			function_requirements('deactivate_cpanel');
 			deactivate_cpanel($serviceInfo[$settings['PREFIX'].'_ip']);
 			$GLOBALS['tf']->history->add($settings['TABLE'], 'del_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
