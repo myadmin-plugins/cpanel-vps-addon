@@ -13,8 +13,8 @@
  */
 function vps_add_cpanel()
 {
-	function_requirements('class.AddServiceAddon');
-	$addon = new AddServiceAddon();
-	$addon->load(__FUNCTION__, 'CPanel', 'vps', VPS_CPANEL_COST);
-	$addon->process();
+    function_requirements('class.AddServiceAddon');
+    $addon = new AddServiceAddon();
+    $addon->load(__FUNCTION__, 'CPanel', 'vps', VPS_CPANEL_COST);
+    $addon->process();
 }
