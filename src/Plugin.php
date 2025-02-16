@@ -124,6 +124,8 @@ class Plugin
          * @var \MyAdmin\Settings $settings
          **/
         $settings = $event->getSubject();
+        $settings->setTarget('module');
         $settings->add_text_setting(self::$module, _('Addon Costs'), 'vps_cpanel_cost', _('VPS CPanel License'), _('This is the cost for purchasing a cpanel license on top of a VPS.'), $settings->get_setting('VPS_CPANEL_COST'));
+        $settings->setTarget('global');
     }
 }
