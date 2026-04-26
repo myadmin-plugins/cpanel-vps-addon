@@ -86,7 +86,7 @@ class Plugin
         if (($serviceExtra === false || $serviceExtra['valid'] != 1) && $serviceInfo[$settings['PREFIX'].'_ip'] != '') {
             function_requirements('activate_cpanel');
             activate_cpanel($serviceInfo[$settings['PREFIX'].'_ip'], 31369);
-            $GLOBALS['tf']->history->add($settings['TABLE'], 'add_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
+            \MyAdmin\App::history()->add($settings['TABLE'], 'add_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
         }
     }
 
@@ -107,7 +107,7 @@ class Plugin
         if ($serviceExtra !== false && $serviceExtra['valid'] == 1 && $serviceInfo[$settings['PREFIX'].'_ip'] != '') {
             function_requirements('deactivate_cpanel');
             deactivate_cpanel($serviceInfo[$settings['PREFIX'].'_ip']);
-            $GLOBALS['tf']->history->add($settings['TABLE'], 'del_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
+            \MyAdmin\App::history()->add($settings['TABLE'], 'del_cpanel', $serviceInfo[$settings['PREFIX'].'_id'], $serviceInfo[$settings['PREFIX'].'_ip'], $serviceInfo[$settings['PREFIX'].'_custid']);
             add_output(self::$name.' Canceled');
             $email = $settings['TBLNAME'].' ID: '.$serviceInfo[$settings['PREFIX'].'_id'].'<br>'.$settings['TBLNAME'].' Hostname: '.$serviceInfo[$settings['PREFIX'].'_hostname'].'<br>Repeat Invoice: '.$repeatInvoiceId.'<br>Description: '.self::$name.'<br>';
             $subject = $settings['TBLNAME'].' '.$serviceInfo[$settings['PREFIX'].'_id'].' Canceled '.self::$name;
