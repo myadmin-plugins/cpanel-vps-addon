@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Detain\MyAdminVpsCpanel\Tests;
 
 use Detain\MyAdminVpsCpanel\Plugin;
+use MyAdmin\Plugins\Testing\Contract\TierA5HooksAreIdempotent;
 use MyAdmin\Plugins\Testing\PluginContractTestCase;
 
 /**
@@ -71,6 +72,13 @@ class ContractTest extends PluginContractTestCase
      */
     public function testRegistersItsIdentityAndHooks(): void
     {
+        // Prime FIRST, before anything touches the plugin class. A static property
+        // initializer may itself reference a bare constant -- $settings holding
+        // REPEAT_BILLING_METHOD => PRORATE_BILLING is the common shape -- and that is
+        // evaluated when the class loads, so even reading ::$type fatals on an unprimed
+        // class. Priming before the first mention is what keeps this pin readable.
+        $this->primeConstants();
+
         $this->assertSame(
             'addon',
             Plugin::$type,
@@ -83,19 +91,29 @@ class ContractTest extends PluginContractTestCase
             'changing $module detaches this plugin from the vps events it handles'
         );
 
-        $this->primeConstants();
+        // Read the table the way every inspector reads it. Calling getHooks() directly here
+        // would be a second, independent answer to "can this plugin's hook table be
+        // evaluated?" -- and a plugin whose getHooks() body references a bare constant
+        // (PRORATE_BILLING and friends) throws for a direct caller while the inspectors
+        // handle it. A-5 owns that question; this pin consumes its answer.
+        $hooks = TierA5HooksAreIdempotent::hookTable($this->contractSubject());
+
+        $this->assertNotNull(
+            $hooks,
+            'getHooks() could not be evaluated at all -- assertion A-5 reports the root cause'
+        );
 
         $this->assertSame(
             [
-            'function.requirements',
-            'vps.load_addons',
-            'vps.settings',
-        ],
-            array_keys(Plugin::getHooks()),
+                'function.requirements',
+                'vps.load_addons',
+                'vps.settings',
+            ],
+            array_keys($hooks),
             'the hook table changed shape -- a key was added, removed or renamed'
         );
 
-        foreach (Plugin::getHooks() as $key => $handler) {
+        foreach ($hooks as $key => $handler) {
             $this->assertIsCallable($handler, $key.' no longer resolves to anything callable');
         }
     }
