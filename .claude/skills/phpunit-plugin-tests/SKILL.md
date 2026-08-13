@@ -1,7 +1,31 @@
 ---
 name: phpunit-plugin-tests
-description: Generates PHPUnit 9.6 tests under `tests/` in `Detain\MyAdminVpsCpanel\Tests` namespace following `tests/VpsAddCpanelFileTest.php` and `tests/PluginTest.php` patterns — file existence, PHP tag, docblock assertions, function/class presence via source analysis and ReflectionClass. Use when user says 'add tests', 'write test for', 'test this file', 'write phpunit', or 'test the plugin'. Do NOT use for integration tests requiring a live MyAdmin runtime, database, or licensing API calls.
+description: Generates PHPUnit 9.6 tests under `tests/` in `Detain\MyAdminVpsCpanel\Tests` namespace following `tests/VpsAddCpanelFileTest.php` and `tests/PluginTest.php` patterns — file existence, PHP tag, docblock assertions, function/class presence via source analysis and ReflectionClass. Use when user says 'add tests', 'write test for', 'test this file', 'write phpunit', or 'test the plugin'. Do NOT use for integration tests requiring a live MyAdmin runtime, database, or licensing API calls. NOTE: for a plugin's contract/behavioral tests (tests/ContractTest.php, the shared harness, composer myadmin:scaffold-tests) use the plugin-contract-tests skill instead — this skill's reflection-only guidance predates that harness.
 ---
+<!-- myadmin-contract-harness-notice -->
+> ### ⚠️ Read this before the rest of the file
+>
+> This package is on the **shared plugin contract harness**. Parts of the guidance below
+> predate it and are now wrong in one specific way:
+>
+> **Any instruction here that a plugin's `getHooks()` / `getSettings()` / `getActivate()` /
+> `getDeactivate()` / `getQueue()` must not be *called* — that only its existence, visibility
+> or parameter count may be checked through `ReflectionClass` — no longer applies.** That rule
+> existed because those methods reference bare constants (`PRORATE_BILLING` and friends) that
+> only a live MyAdmin request defines, so calling them from a test used to fatal. The harness
+> defines them first. It then executes the handlers for real, in a process of its own.
+>
+> A reflection-only assertion passes whether or not the thing works: `getActivate()` can exist,
+> be public, be static, take one argument, and still fatal the moment it runs. Three real
+> production bugs in this fleet were sitting behind assertions of exactly that shape.
+>
+> **Use the `plugin-contract-tests` skill** for anything touching `tests/ContractTest.php`,
+> the contract inspectors, or `composer myadmin:scaffold-tests`.
+>
+> **Everything else in this file is still accurate and still applies** — this package's own
+> classes, its API wrappers, its fixtures, its bootstrap, and the reasons certain classes must
+> not be constructed. Nothing below has been removed.
+
 # PHPUnit Plugin Tests
 
 ## Critical
